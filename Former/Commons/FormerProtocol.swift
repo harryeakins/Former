@@ -102,7 +102,7 @@ public protocol ConfigurableForm: class {}
 public extension ConfigurableForm where Self: RowFormer {
     
     @discardableResult
-    func configure(handler: ((Self) -> Void)) -> Self {
+    func configure(_ handler: ((Self) -> Void)) -> Self {
         handler(self)
         return self
     }
@@ -111,7 +111,7 @@ public extension ConfigurableForm where Self: RowFormer {
 public extension ConfigurableForm where Self: ViewFormer {
     
     @discardableResult
-    func configure(handler: ((Self) -> Void)) -> Self {
+    func configure(_ handler: ((Self) -> Void)) -> Self {
         handler(self)
         return self
     }

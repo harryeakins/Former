@@ -56,13 +56,13 @@ open class InlinePickerRowFormer<T: UITableViewCell, S>
     }
 
     @discardableResult
-    public final func onEditingBegin(handler: @escaping ((InlinePickerItem<S>, T) -> Void)) -> Self {
+    public final func onEditingBegin(_ handler: @escaping ((InlinePickerItem<S>, T) -> Void)) -> Self {
         onEditingBegin = handler
         return self
     }
 
     @discardableResult
-    public final func onEditingEnded(handler: @escaping ((InlinePickerItem<S>, T) -> Void)) -> Self {
+    public final func onEditingEnded(_ handler: @escaping ((InlinePickerItem<S>, T) -> Void)) -> Self {
         onEditingEnded = handler
         return self
     }

@@ -46,13 +46,13 @@ open class InlineDatePickerRowFormer<T: UITableViewCell>
     }
     
     @discardableResult
-    public final func onEditingBegin(handler: @escaping ((Date, T) -> Void)) -> Self {
+    public final func onEditingBegin(_ handler: @escaping ((Date, T) -> Void)) -> Self {
         onEditingBegin = handler
         return self
     }
     
     @discardableResult
-    public final func onEditingEnded(handler: @escaping ((Date, T) -> Void)) -> Self {
+    public final func onEditingEnded(_ handler: @escaping ((Date, T) -> Void)) -> Self {
         onEditingEnded = handler
         return self
     }
