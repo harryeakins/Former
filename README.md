@@ -452,11 +452,13 @@ public final class DoubleTextFieldRowFormer<T: UITableViewCell where T: DoubleTe
         super.init(instantiateType: instantiateType, cellSetup: cellSetup)
     }
 
+    @discardableResult
     public final func onText1Changed(handler: (String -> Void)) -> Self {
         onText1Changed = handler
         return self
     }
 
+    @discardableResult
     public final func onText2Changed(handler: (String -> Void)) -> Self {
         onText2Changed = handler
         return self
