@@ -62,6 +62,18 @@ open class SelectorPickerRowFormer<T: UITableViewCell, S>
         onValueChanged = handler
         return self
     }
+
+    @discardableResult
+    public final func onEditingBegin(_ handler: @escaping ((SelectorPickerItem<S>?, T) -> Void)) -> Self {
+        onEditingBegin = handler
+        return self
+    }
+
+    @discardableResult
+    public final func onEditingEnded(_ handler: @escaping ((SelectorPickerItem<S>?, T) -> Void)) -> Self {
+        onEditingEnded = handler
+        return self
+    }
     
     open override func update() {
         super.update()
@@ -132,6 +144,11 @@ open class SelectorPickerRowFormer<T: UITableViewCell, S>
             }
             isEditing = true
         }
+        var pickerItem: SelectorPickerItem<S>?
+        if let selectedRow = selectedRow {
+            pickerItem = pickerItems[selectedRow]
+        }
+        onEditingBegin?(pickerItem, cell)
     }
     
     public func editingDidEnd() {
@@ -153,13 +170,22 @@ open class SelectorPickerRowFormer<T: UITableViewCell, S>
             titleLabel?.textColor = titleDisabledColor
             displayLabel?.textColor = displayDisabledColor
         }
+        var pickerItem: SelectorPickerItem<S>?
+        if let selectedRow = selectedRow {
+            pickerItem = pickerItems[selectedRow]
+        }
+        onEditingEnded?(pickerItem, cell)
     }
     
     // MARK: Private
     
     fileprivate final var onValueChanged: ((SelectorPickerItem<S>) -> Void)?
+    fileprivate final var onEditingBegin: ((SelectorPickerItem<S>?, T) -> Void)?
+    fileprivate final var onEditingEnded: ((SelectorPickerItem<S>?, T) -> Void)?
+
     fileprivate final var titleColor: UIColor?
     fileprivate final var displayTextColor: UIColor?
+
     fileprivate final lazy var observer: Observer<T, S> = Observer<T, S>(selectorPickerRowFormer: self)
 }
 
